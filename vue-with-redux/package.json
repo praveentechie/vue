@@ -1,0 +1,43 @@
+{
+  "name": "vue-with-redux",
+  "version": "1.0.0",
+  "description": "POC for using VueJS with redux",
+  "main": "index.js",
+  "scripts": {
+    "serve": "vue-cli-service serve"
+  },
+  "keywords": [
+    "VueJS",
+    "Redux"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "redux": "^3.7.2",
+    "redux-vuex": "^0.2.0",
+    "vue": "^2.6.10"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.8.0",
+    "@vue/cli-plugin-eslint": "^3.8.0",
+    "@vue/cli-service": "^3.8.0",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  }
+}
