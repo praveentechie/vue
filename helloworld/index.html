@@ -1,0 +1,45 @@
+<html>
+  <!-- VIEW START -->
+  <!-- render using class -->
+  <h3>Data binding</h3>
+  <div class="content-class">
+    Hello {{message}}
+    <!-- event handler -->
+    <h3>Event Handlers</h3>
+    <button @click="clickHandler()">Click with @click</button>
+    <button v-on:click="clickHandler()">Click with v-on:click</button>
+    <!-- ITERATION -->
+    <h3>Iteration</h3>
+    <ul>
+      <li v-for="name in arrayList">{{name.name}}</li>
+    </ul>
+  </div>
+  <!-- render using id -->
+  <div id="content-id">
+    Hello {{message}}
+    <router-view></router-view>
+  </div>
+  <template id='list'>
+    <div>
+      <h4>Component rendering</h4>
+      <ul>
+        <li v-for="name in arrayList">{{name.name}}</li>
+      </ul>
+      <a><router-link :to="{name: 'create-user'}">Create</router-link></a>
+    </div>
+  </template>
+  <template id='create'>
+    <div>
+      <h4>Create User</h4>
+      <a><router-link :to="{name: 'home'}">Home</router-link></a><br/>
+      Name: <input v-model="name"></input>
+      Desc: <input v-model="desc"></input><br/>
+      <button @click="addUser()">Add</button><br/>
+    </div>    
+  </template>
+  <!-- VIEW END -->
+  <!-- scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  <script src="./app.js"></script>
+</html>
