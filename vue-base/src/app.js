@@ -7,6 +7,7 @@ import App from './App.vue';
 import routes from './routers';
 import {store} from './store';
 import './components/initComponents';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/app.scss';
 
 Vue.use(VueRouter);

@@ -1,10 +1,10 @@
 <template>
-  <!-- ### <template> component rules and best practices
+  <!-- ### vue: <template> component rules and best practices
     1. every component must have a single root element
   -->
   <div>
     <h1>User list <c-icon icon-class="fa-user"/></h1>
-    <b-button variant="outline-primary" v-on:click="getAllUsers" :disabled="isLoading">
+    <b-button variant="outline-primary" @click="getAllUsers" :disabled="isLoading">
       <span v-if="isLoading">
         <b-spinner small></b-spinner>
         <span>Loading...</span>
@@ -32,7 +32,7 @@ import UserActions from '../store/modules/user/user-actions.js';
 import {store} from '../store';
 import { styledConsole } from '../utils/debug-hepler';
 
-/** ### map actions & map state
+/** ### vue: map actions & map state
  * map actions and state related to user module
  */
 const { mapActions, mapState } = createNamespacedHelpers('user');
@@ -42,7 +42,7 @@ function lifeCycleHookStyle(message, styles = '') {
 }
 export default {
   beforeCreate() {
-    lifeCycleHookStyle('### Life cycle hooks', 'font-size: 3em;')
+    lifeCycleHookStyle('### vue: Life cycle hooks', 'font-size: 3em;')
     lifeCycleHookStyle(`1. beforeCreate()
     - Nothing gets called before me!`);
   },
@@ -76,7 +76,7 @@ export default {
     lifeCycleHookStyle(`8. destroyed()
     - practically nothing here!`);
   },
-  /** ### components
+  /** ### vue: components
    * Should export the components that are used by the current component.
    * If not will throw error that component is not initialized
    * Can also register a component globally, which is used frequently so the the import size will be reduced.
@@ -85,20 +85,20 @@ export default {
   components: {
     
   },
-  /** ### computed
+  /** ### vue: computed
    * computed props, can also use value from props or data using `this` context
    */
   computed: {
     ...mapState(['getAllError', 'userList'])
   },
-  /** ### data
+  /** ### vue: data
    * values specific to the component like state in react
    * should be a function
    */
   data: () => ({
     isLoading: false
   }),
-  /** ### methods (Component)
+  /** ### vue: methods (Component)
    * methods specific to the components. can access props and others using `this` context
    * Don’t use arrow functions on an options property or callback
    */
@@ -114,7 +114,7 @@ export default {
       getAll: UserActions.GET_ALL
     })
   },
-  /** ### props
+  /** ### vue: props
    * Prop to be passed when component added as HTML
    * specify type and required option
    */
