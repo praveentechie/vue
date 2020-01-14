@@ -56,6 +56,11 @@ export default {
       }
       alert(`${event.type} event triggered`);
     }
+  },
+  beforeRouteLeave(to, from, next) {
+    console.log(to, from, next);
+    alert('You are about to leave and next() has to be called');
+    next();
   }
 }
 </script>

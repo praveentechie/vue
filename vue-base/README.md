@@ -1,1 +1,19 @@
-# vue basic to advanced terms
+# vue and other libraries
+
+## VueX
+
+
+## Vue router
+### The Full Navigation Resolution Flow
+1. Navigation triggered.
+2. Call beforeRouteLeave guards in deactivated components.
+3. Call global beforeEach guards.
+4. Call beforeRouteUpdate guards in reused components.
+5. Call beforeEnter in route configs.
+6. Resolve async route components.
+7. Call beforeRouteEnter in activated components.
+8. Call global beforeResolve guards.
+9. Navigation confirmed.
+10. Call global afterEach hooks.
+11. DOM updates triggered.
+12. Call callbacks passed to next in beforeRouteEnter guards with instantiated instances.

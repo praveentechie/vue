@@ -1,7 +1,9 @@
 <template>
   <div>
     <navigation-bar></navigation-bar>
-    <router-view></router-view>
+    <transition name="slide-right">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
