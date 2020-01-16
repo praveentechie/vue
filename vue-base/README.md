@@ -1,5 +1,16 @@
 # vue and other libraries
 
+## Dynamic page loading & store registration
+
+## Lazy load components
+Refer `LazyLoadPage.vue` for loading components dynamically and register in local.
+```
+  components: {
+    'lazy-component': () => import('../components/lazy-component.vue'),
+    'lazy-component-v2': () => import('../components/lazy-component-v2.vue')
+  }
+```
+
 ## VueX
 
 

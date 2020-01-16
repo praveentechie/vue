@@ -15,11 +15,4 @@ connect({
 
 new Vue({
   render: h => h(App),
-}).$mount('#app')
-
-let res = {
-  type: <native_constructors>,
-  default: <any>,
-  required: Boolean,
-  validator: () => {}
-}
+}).$mount('#app');

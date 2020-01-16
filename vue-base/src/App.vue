@@ -2,7 +2,9 @@
   <div>
     <navigation-bar></navigation-bar>
     <transition name="slide-right">
-      <router-view></router-view>
+      <section class="content">
+        <router-view></router-view>
+      </section>
     </transition>
   </div>
 </template>

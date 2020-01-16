@@ -18,18 +18,23 @@
 </template>
 
 <script>
-import { mapState } from "redux-vuex";
+import { mapState, mapActions } from "redux-vuex";
 
 export default {
   name: 'Todo',
   props: {
     message: String
   },
-  data: mapState({
-    todo: '',
-    todos: 'todos'
-  }),
+  data: function() {
+    return {
+      ...mapState({
+        todo: '',
+        todos: 'todos'
+      });
+    }
+  },
   methods: {
+    ...mapActions("foo", "bar"),
     update: function update() {
       console.log('this', this.todo);
     }
