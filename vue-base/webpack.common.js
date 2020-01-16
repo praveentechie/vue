@@ -1,25 +1,18 @@
 'use strict'
 const path = require('path');
 const webpack = require('webpack');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
   entry: [
     './src/app.js'
   ],
   output: {
     filename: '[name].bundle.js',
     chunkFilename: '[name].bundle.js',
-    path: path.resolve(__dirname, '..', 'dist')
-  },
-  devServer: {
-    hot: true,
-    port: 3030,
-    watchOptions: {
-      poll: true
-    }
+    path: path.resolve(__dirname, 'dist')
   },
   module: {
     rules: [
@@ -56,7 +49,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
+    new CleanWebpackPlugin(),
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
