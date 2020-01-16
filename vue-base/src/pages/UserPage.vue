@@ -6,6 +6,7 @@
     <h1>User list <c-icon icon-class="fa-user"/></h1>
     <b-button variant="outline-primary" @click="getAllUsers" :disabled="isLoading">
       <span v-if="isLoading">
+        <lazy-component></lazy-component>
         <b-spinner small></b-spinner>
         <span>Loading...</span>
       </span>
@@ -83,7 +84,7 @@ export default {
    * refer to './components/initComponents' for global component declaration
    */
   components: {
-    
+    'lazy-component': () => import('../components/lazy-component.vue')
   },
   /** ### vue: computed
    * computed props, can also use value from props or data using `this` context

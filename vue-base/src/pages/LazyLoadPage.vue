@@ -22,8 +22,9 @@ export default {
     }
   },
   components: {
-    'lazy-component': () => import('../components/lazy-component.vue'),
-    'lazy-component-v2': () => import('../components/lazy-component-v2.vue')
+    // ### webpack: webpackChunkName - name for the chunk we would like to create
+    'lazy-component': () => import(/* webpackChunkName: "comp1" */'../components/lazy-component.vue'),
+    'lazy-component-v2': () => import(/* webpackChunkName: "comp2" */'../components/lazy-component-v2.vue')
   }
 }
 </script>

@@ -1,6 +1,6 @@
 # vue and other libraries
 
-## Dynamic page loading & store registration
+## Lazy load route & store registration
 
 ## Lazy load components
 Refer `LazyLoadPage.vue` for loading components dynamically and register in local.
