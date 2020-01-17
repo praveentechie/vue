@@ -4,6 +4,7 @@
   "description": "vue app with MVC and connect to node server",
   "main": "./src/app.js",
   "scripts": {
+    "prod": "node ./dist/server.bundle.js",
     "build-app": "webpack --config ./webpack.prod.js",
     "build-server": "webpack --config ./webpack.server.js",
     "dev": "webpack-dev-server --config ./webpack.dev.js",
