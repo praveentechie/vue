@@ -84,7 +84,7 @@ export default {
    * refer to './components/initComponents' for global component declaration
    */
   components: {
-    'lazy-component': () => import('../components/lazy-component.vue')
+    'lazy-component': () => import(/* webpackChunkName: "comp1" */'../components/lazy-component.vue')
   },
   /** ### vue: computed
    * computed props, can also use value from props or data using `this` context

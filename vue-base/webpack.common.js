@@ -1,14 +1,13 @@
 'use strict'
 const path = require('path');
-const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: [
-    './src/app.js'
-  ],
+  entry: {
+    app: './src/app.js',
+  },
   output: {
     filename: '[name].bundle.js',
     chunkFilename: '[name].bundle.js',
@@ -17,8 +16,17 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: 'babel-loader'
+      },
+      {
         test: /\.vue$/,
-        use: 'vue-loader'
+        use: [
+          {
+            loader: 'vue-loader'
+          }
+        ],
       }, {
         test: /\.scss$/,
         use: [
@@ -54,7 +62,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html',
-      inject: true
+      inject: true,
+      excludeChunks: [ 'server' ]
     })
   ]
 }
