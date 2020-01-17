@@ -65,5 +65,12 @@ module.exports = {
       inject: true,
       excludeChunks: [ 'server' ]
     })
-  ]
+  ],
+  // ### webpack: reduces file size
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      maxAsyncRequests: 6
+    }
+  }
 }

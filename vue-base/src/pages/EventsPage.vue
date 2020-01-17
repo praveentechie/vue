@@ -3,7 +3,7 @@
     <h2 class="page-title">Events & Forms page</h2>
     <hr>
     <h4>Events</h4>
-    <b-button @click.ctrl="eventHandler">Click - Disable form</b-button>
+    <b-button @click="eventHandler">Click - Disable form</b-button>
     <b-button @click.ctrl="eventHandler">Ctrl + Click</b-button>
     <!-- ### vue: key + event
       .ctrl

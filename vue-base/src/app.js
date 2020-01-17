@@ -10,6 +10,7 @@ import './components/initComponents';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles/app.scss';
 
+console.log('process.env.node_env', process.env.NODE_ENV);
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
 
