@@ -10,17 +10,15 @@
 </template>
 
 <script>
-import Vue from 'vue';
-import UserPage from './pages/UserPage.vue';
-import HomePage from './pages/HomePage.vue';
-import EventsPage from './pages/EventsPage.vue';
-import VueRouter from 'vue-router'
+import HomePage from '../../views/HomePage.vue';
+import EventsPage from '../../views/EventsPage.vue';
+import './styles/app.scss';
 
 export default {
   components: {
     EventsPage,
     HomePage,
-    UserPage
+    UserPage: () => import('../user/views/UserPage.vue')
   }
 }
 </script>

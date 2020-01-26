@@ -1,23 +1,18 @@
 //third party libraries
 import Vue from 'vue';
 import BootstrapVue from 'bootstrap-vue';
-import VueRouter from 'vue-router'
 //project specific imports
-import App from './App.vue';
-import routes from './routers';
-import {store} from './store';
-import './components/initComponents';
+import { routerInstall } from './modules/_router';
+import { coreInstall } from './modules/_core';
+import { storeInstall } from './modules/_store';
+import { install as userInstall } from './modules/user';
+import './modules/shared/initComponents';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './styles/app.scss';
 
 console.log('process.env.node_env', process.env.NODE_ENV);
-Vue.use(VueRouter);
 Vue.use(BootstrapVue);
 
-const router = new VueRouter({routes});
-new Vue({
-  el: '#app',
-  router,
-  store,
-  render: h => h(App)
-})
+const router = routerInstall(Vue);
+const store = storeInstall(Vue);
+userInstall(router, store);
+coreInstall(Vue, router, store);

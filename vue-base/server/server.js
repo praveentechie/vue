@@ -3,7 +3,7 @@ import helmet from 'helmet';
 
 const app = express();
 
-const PORT = 7070,
+const PORT = 3030,
   DIST_DIR = 'dist/';
 
 app.use(express.json())

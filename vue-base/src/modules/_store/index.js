@@ -1,0 +1,1 @@
+export { install as storeInstall } from './store';

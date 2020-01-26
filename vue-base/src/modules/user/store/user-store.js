@@ -1,4 +1,4 @@
-import UserService from '../../../services/user-service';
+import UserService from '../../services/user-service';
 import UserActions from './user-actions'
 import UserCommits from './user-commits';
 

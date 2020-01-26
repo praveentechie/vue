@@ -11,6 +11,11 @@ module.exports = merge(common, {
     watchOptions: {
       poll: true
     }
+    // ### webpack: serve the below resource in case of 404
+    // ,
+    // historyApiFallback: {
+    //   index: '/index.html'
+    // }
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin()

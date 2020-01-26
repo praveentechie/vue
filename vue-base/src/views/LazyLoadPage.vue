@@ -23,8 +23,8 @@ export default {
   },
   components: {
     // ### webpack: webpackChunkName - name for the chunk we would like to create
-    'lazy-component': () => import(/* webpackChunkName: "comp1" */'../components/lazy-component.vue'),
-    'lazy-component-v2': () => import(/* webpackChunkName: "comp2" */'../components/lazy-component-v2.vue')
+    'lazy-component': () => import(/* webpackChunkName: "comp1" */'../modules/shared/components/lazy-component.vue'),
+    'lazy-component-v2': () => import(/* webpackChunkName: "comp2" */'../modules/shared/components/lazy-component-v2.vue')
   }
 }
 </script>

@@ -28,10 +28,9 @@
 
 <script>
 import { createNamespacedHelpers } from 'vuex';
-import UserService from '../services/user-service';
-import UserActions from '../store/modules/user/user-actions.js';
-import {store} from '../store';
-import { styledConsole } from '../utils/debug-hepler';
+import UserService from '../../services/user-service';
+import UserActions from '../store/user-actions';
+import { styledConsole } from '../../shared/helpers/debug-hepler';
 
 /** ### vue: map actions & map state
  * map actions and state related to user module
@@ -42,6 +41,7 @@ function lifeCycleHookStyle(message, styles = '') {
   styledConsole(message, 'font-size: 1.25em; ' + styles);
 }
 export default {
+  name: 'UserPage',
   beforeCreate() {
     lifeCycleHookStyle('### vue: Life cycle hooks', 'font-size: 3em;')
     lifeCycleHookStyle(`1. beforeCreate()
@@ -84,7 +84,7 @@ export default {
    * refer to './components/initComponents' for global component declaration
    */
   components: {
-    'lazy-component': () => import(/* webpackChunkName: "comp1" */'../components/lazy-component.vue')
+    'lazy-component': () => import(/* webpackChunkName: "comp1" */'../../shared/components/lazy-component.vue')
   },
   /** ### vue: computed
    * computed props, can also use value from props or data using `this` context
@@ -122,7 +122,7 @@ export default {
   props: {
     name: {
       type: String,
-      required: true
+      required: false
     }
   }
 }
