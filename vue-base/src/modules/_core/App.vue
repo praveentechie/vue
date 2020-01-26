@@ -1,24 +1,31 @@
 <template>
   <div>
     <navigation-bar></navigation-bar>
-    <transition name="slide-right">
-      <section class="content">
+    <section class="content">
+      <transition name="component-fade" mode="out-in">
         <router-view></router-view>
-      </section>
-    </transition>
+      </transition>
+    </section>
   </div>
 </template>
 
 <script>
-import HomePage from '../../views/HomePage.vue';
 import EventsPage from '../../views/EventsPage.vue';
-import './styles/app.scss';
+import './styles/core.scss';
 
 export default {
   components: {
-    EventsPage,
-    HomePage,
-    UserPage: () => import('../user/views/UserPage.vue')
+    EventsPage
   }
 }
 </script>
+
+<style scoped>
+.component-fade-enter-active, .component-fade-leave-active {
+  transition: opacity .2s ease;
+}
+.component-fade-enter, .component-fade-leave-to
+/* .component-fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+</style>

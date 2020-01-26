@@ -54,7 +54,7 @@ export default {
       if (event.type === 'click') {
         this.disableForm = !this.disableForm;
       }
-      alert(`${event.type} event triggered`);
+      console.log(`${event.type} event triggered`);
     }
   },
   beforeRouteLeave(to, from, next) {

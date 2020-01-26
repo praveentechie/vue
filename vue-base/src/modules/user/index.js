@@ -1,15 +1,7 @@
-import {user as userStore} from './store/user-store';
+import { user as userStore } from './store/user-store';
+import UserRoutes from './router/user-routes';
 
 export const install = (router, store) => {
-  const USER_ROUTES = [
-    {
-      path: '/users',
-      component: () => import('./views/UserPage.vue'),
-      props: {
-        name: 'AP'
-      }
-    }
-  ];
-  router.addRoutes(USER_ROUTES);
+  router.addRoutes(UserRoutes);
   store.registerModule('user', userStore);
 }

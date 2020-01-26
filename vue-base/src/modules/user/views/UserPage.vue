@@ -19,8 +19,8 @@
       :items="userList"
     >
       <template v-slot:cell(action)="data">
-        <i class="fa fa-pencil"/>
-        <i class="fa fa-trash"/>
+        <c-icon icon-class="fa-info-circle" :icon-disabled=true></c-icon>
+        <c-icon icon-class="fa-pencil" @click="editUser(data)"></c-icon>
       </template>
     </b-table>
   </div>
@@ -111,6 +111,9 @@ export default {
         this.isLoading = false;
       }, 1000);
     },
+    editUser: function(data) {
+      console.log('data ', data.item._id);
+    },
     ...mapActions({
       getAll: UserActions.GET_ALL
     })
@@ -122,7 +125,7 @@ export default {
   props: {
     name: {
       type: String,
-      required: false
+      required: true
     }
   }
 }

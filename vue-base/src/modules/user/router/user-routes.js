@@ -1,9 +1,9 @@
 export default [
   {
     path: '/users',
-    component: () => import('../pages/UserPage.vue'),
+    component: () => import('../views/UserPage.vue'),
     props: {
-      name: 'Ap router'
+      name: 'AP router'
     }
   }
 ];
