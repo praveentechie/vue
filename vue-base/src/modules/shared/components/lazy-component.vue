@@ -1,3 +1,3 @@
 <template>
-  <div>Lazy loader</div>
+  <div>Lazily loaded</div>
 </template>

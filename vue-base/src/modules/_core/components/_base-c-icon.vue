@@ -1,17 +1,18 @@
 <template>
-  <i :class="`fa ${iconClass} c-icon`" :disabled=iconDisabled></i>
+  <!-- ### vue: style When you use the class attribute on a custom component, those classes will be added to the component’s root element -->
+  <i class="fa c-icon" :disabled=iconDisabled :title=title></i>
 </template>
 
 <script>
 export default {
   props: {
-    iconClass: {
-      required: true,
-      type: String
-    },
     iconDisabled: {
       required: false,
       type: Boolean
+    },
+    title: {
+      required: false,
+      type: String
     }
   }
 }

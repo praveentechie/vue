@@ -10,6 +10,7 @@ import UserCommits from './user-commits';
 const actions = {
   async [UserActions.GET_ALL]({commit, state}) {
     try {
+      commit(UserCommits.GET_ALL_START);
       let userList = await UserService.getUsers();
       setTimeout(() => {
         commit(UserCommits.GET_ALL_SUCCESS, userList);
@@ -24,13 +25,18 @@ const actions = {
  * Vuex mutations are very similar to events: each mutation has a string `type` and a `handler`.
  */
 const mutations = {
+  [UserCommits.GET_ALL_START](state) {
+    state.fetchingUsers = true;
+  },
   [UserCommits.GET_ALL_SUCCESS](state, data) {
     state.userList = data;
-    state.getAllError = null;
+    state.getUsersError = null;
+    state.fetchingUsers = false;
   },
   [UserCommits.GET_ALL_FAILURE](state, error) {
-    state.getAllError = error;
+    state.getUsersError = error;
     state.userList = [];
+    state.fetchingUsers = false;
   }
 };
 /**
@@ -38,7 +44,8 @@ const mutations = {
  */
 const state = {
   userList: [],
-  getAllError: ''
+  getUsersError: '',
+  fetchingUsers: false
 };
 
 export const user = {

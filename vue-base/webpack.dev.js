@@ -5,6 +5,7 @@ const webpack = require('webpack');
 
 module.exports = merge(common, {
   mode: 'development',
+  devtool: 'inline-source-map', // ### webpack: to track error using original file..not to be used in prod
   devServer: {
     hot: true,
     port: 3030,
@@ -18,6 +19,14 @@ module.exports = merge(common, {
     // }
   },
   plugins: [
+    // ### webpack: HtmlWebpackPlugin
+    new HtmlWebpackPlugin({
+      title: 'Vue app',
+      filename: 'index.html', // default value
+      template: 'index.html',
+      inject: true,
+      excludeChunks: [ 'server' ]
+    }),    
     new webpack.HotModuleReplacementPlugin()
   ]
 });

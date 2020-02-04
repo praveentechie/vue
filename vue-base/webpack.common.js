@@ -1,8 +1,7 @@
 'use strict'
 const path = require('path');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   entry: {
@@ -29,17 +28,31 @@ module.exports = {
         ],
       }, {
         test: /\.scss$/,
+        exclude: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
         use: [
           'vue-style-loader',
           'style-loader',
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: './dist'
+            }
+          },
           'css-loader',
           'sass-loader'
         ]
       }, {
         test: /\.css$/,
+        exclude: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
         use: [
           'vue-style-loader',
           'style-loader',
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: './dist'
+            }
+          },
           'css-loader'
         ]
       }, {
@@ -57,14 +70,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(),
-    new VueLoaderPlugin(),
-    new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: 'index.html',
-      inject: true,
-      excludeChunks: [ 'server' ]
-    })
+    new VueLoaderPlugin()
   ],
   // ### webpack: reduces file size
   optimization: {

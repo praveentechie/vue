@@ -58,14 +58,14 @@ export default {
     }
   },
   beforeRouteLeave(to, from, next) {
-    console.log(to, from, next);
+    console.log('router', to, from, next);
     alert('You are about to leave and next() has to be called');
     next();
   }
 }
 </script>
 
-// ### vue: scoped style will apply only to this component
+// ### vue: style scoped style will apply only to this component
 <style lang="scss" scoped>
   .events-page {
     background-color: #efefef;
