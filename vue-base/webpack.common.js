@@ -28,13 +28,13 @@ module.exports = {
         ],
       }, {
         test: /\.scss$/,
-        exclude: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
         use: [
           'vue-style-loader',
           'style-loader',
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
+              hmr: process.env.NODE_ENV === 'development',
               publicPath: './dist'
             }
           },
@@ -43,26 +43,37 @@ module.exports = {
         ]
       }, {
         test: /\.css$/,
-        exclude: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
         use: [
           'vue-style-loader',
           'style-loader',
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
+              hmr: process.env.NODE_ENV === 'development',
               publicPath: './dist'
             }
           },
           'css-loader'
         ]
       }, {
-        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
         use: [
           {
             loader: 'file-loader',
             options: {
               name: '[name].[ext]',
               outputPath: 'fonts/'
+            }
+          }
+        ]
+      }, {
+        test: /\.(svg|png|jpg|gif)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'images/'
             }
           }
         ]

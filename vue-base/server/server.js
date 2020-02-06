@@ -9,7 +9,7 @@ const PORT = 3030,
 app.use(express.json())
 // protect from vulnerabilities
 app.use(helmet());
-
+// serve static resources
 app.use(express.static(DIST_DIR));
 
 app.get('*', (req, res) => {

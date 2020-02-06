@@ -7,6 +7,7 @@
 
 <script>
 import UserService from '../../services/user-service';
+import {get} from 'lodash';
 
 export default {
   name: 'UserDetails',
@@ -20,7 +21,7 @@ export default {
   },
   methods: {
     async getUserInfo() {
-      let userInfo = await UserService.getUserInfo(this.$route.params.id);
+      let userInfo = await UserService.getUserInfo(get(this, '$route.params.id', null));
       console.log(userInfo);
       this.userInfo = userInfo;
     },
