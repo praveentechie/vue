@@ -4,11 +4,11 @@ import UserCommits from './user-commits';
 
 /**
  * Actions are similar to mutations, the differences being that:
- *  Instead of mutating the state, actions commit mutations.
- *  Actions can contain arbitrary asynchronous operations.
+ * Instead of mutating the state, actions commit mutations.
+ * Actions can contain arbitrary asynchronous operations.
  */
 const actions = {
-  async [UserActions.GET_ALL]({commit, state}) {
+  async [UserActions.GET_ALL]({commit}) {
     try {
       commit(UserCommits.GET_ALL_START);
       let userList = await UserService.getUsers();
@@ -17,6 +17,18 @@ const actions = {
       }, 2000);
     } catch (error) {
       commit(UserCommits.GET_ALL_FAILURE, error);
+    }
+  },
+  async [UserActions.UPDATE_USER_FORM]({commit}, param) {
+    commit(UserCommits.USER_FORM_UPDATED, param);
+  },
+  async [UserActions.SAVE_USER]({commit, state}, userInfo) {
+    try {
+      let response = await UserService.saveUser(userInfo);
+      commit(UserCommits.USER_FORM_RESET);
+      commit(UserCommits.GET_ALL_SUCCESS, [...state.userList, response]);
+    } catch(error) {
+      console.log('err', error);
     }
   }
 };
@@ -37,6 +49,15 @@ const mutations = {
     state.getUsersError = error;
     state.userList = [];
     state.fetchingUsers = false;
+  },
+  [UserCommits.USER_FORM_UPDATED](state, userInfo) {
+    state.userInfo = {
+      ...state.userInfo,
+      ...userInfo
+    };
+  },
+  [UserCommits.USER_FORM_RESET](state) {
+    state.userInfo = {};
   }
 };
 /**
@@ -45,7 +66,8 @@ const mutations = {
 const state = {
   userList: [],
   getUsersError: '',
-  fetchingUsers: false
+  fetchingUsers: false,
+  userInfo: {}
 };
 
 export const user = {

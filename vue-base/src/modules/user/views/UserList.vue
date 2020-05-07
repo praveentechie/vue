@@ -4,6 +4,12 @@
   -->
   <div class="user-list">
     <h1>User list <c-icon class="fa-user"/></h1>
+
+    <div class="lazy-container">
+      <b-button class="float-right" variant="outline-primary" @click="toggleLazyLoader">Toggle lazy loader</b-button>
+      <lazy-component v-if="isLoading"></lazy-component>
+    </div>
+
     <b-button variant="outline-primary" @click="getAllUsers" :disabled="fetchingUsers">
       <span v-if="fetchingUsers">
         <b-spinner small></b-spinner>
@@ -11,9 +17,11 @@
       </span>
       <span v-else>Get users</span>
     </b-button>
+    <b-button variant="outline-primary" @click="addUser" :disabled="fetchingUsers">
+      Add user
+    </b-button>
     <span v-if="getUsersError">Error</span>
-    <b-button class="float-right" variant="outline-primary" @click="toggleLazyLoader">Toggle lazy loader</b-button>
-    <lazy-component v-if="isLoading"></lazy-component>
+
     <b-table responsive striped show-empty
       empty-text="There are no records to show"
       :fields="['firstName', 'lastName', {key: 'fullNameMethod', label: 'Full name'}, {key: 'fullName', label: 'Full name computed'}, {key: 'action', label: 'Action'}]"
@@ -26,7 +34,9 @@
         {{fullName(data)}}
       </template>
       <template v-slot:cell(action)="data">
-        <router-link :to="`/users/${data.item._id}`"><c-icon class="fa-info-circle" title="User info"></c-icon></router-link>
+        <router-link :to="`/users/info/${data.item._id}`">
+          <c-icon class="fa-info-circle" title="User info"></c-icon>
+        </router-link>
         <!-- ### vue: passing primitives. Even though `false` is static, we need v-bind to tell Vue that this is a JavaScript expression rather than a string. -->
         <c-icon class="fa-pencil" @click="editUser(data)" :icon-disabled="true"></c-icon>
       </template>
@@ -42,6 +52,8 @@ import { styledConsole } from '../../shared/helpers/debug-hepler';
 
 /** ### vue: map actions & map state
  * map actions and state related to user module
+ * ### vue: createNamespacedHelpers - It returns an object having new component
+ *  binding helpers that are bound with the given namespace value (i.e. user key from store in this case)
  */
 const { mapActions, mapState } = createNamespacedHelpers('user');
 
@@ -121,6 +133,9 @@ export default {
    * Don’t use arrow functions on an options property or callback
    */
   methods: {
+    addUser: function() {
+      this.$router.push('info');
+    },
     editUser: function(data) {
       console.log('data ', data.item._id);
     },

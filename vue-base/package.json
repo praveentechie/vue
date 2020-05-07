@@ -7,7 +7,7 @@
     "prod": "node ./dist/server.bundle.js",
     "build-app": "webpack --config ./webpack.prod.js",
     "build-server": "webpack --config ./webpack.server.js",
-    "dev": "webpack-dev-server --config ./webpack.dev.js",
+    "dev-client": "webpack-dev-server --config ./webpack.dev.js",
     "build": "npm run build-app && npm run build-server"
   },
   "author": "AP",

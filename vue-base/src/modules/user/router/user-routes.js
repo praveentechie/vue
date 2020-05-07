@@ -8,13 +8,17 @@ export default [
     children: [
       {
         path: '',
+        redirect: 'list'
+      }, {
+        path: 'list',
+        name: 'user-list',
         props: {
           name: 'AP router'
         },
         component: () => import('../views/UserList.vue')    
-      },
-      {
-        path: ':id',
+      }, {
+        path: 'info/:id?',
+        name: 'user-details',
         component: () => import('../views/UserDetails.vue')
       }
     ]

@@ -1,14 +1,28 @@
-function getUsers() {
-  return fetch('http://localhost:4040/users')
-  .then(response => response.json());    // one extra step
+import restClient     from "../_core/utils/rest-client";
+
+const saveUser = async(userInfo) => {
+  console.log('userInfo--service', userInfo);
+  return await restClient({
+    method: 'POST',
+    requestUrl: '/v1/users',
+    body: userInfo
+  });
 }
 
-function getUserInfo(userId) {
-  return fetch(`http://localhost:4040/users/${userId}`)
-  .then(response => response.json());    // one extra step
+const getUsers = async() => {
+  return await restClient({
+    requestUrl: '/v1/users'
+  });
+}
+
+const getUserInfo = async(userId) => {
+  return await restClient({
+    requestUrl: `/v1/users/${userId}`
+  });
 }
 
 export default {
+  saveUser,
   getUsers,
   getUserInfo
 };

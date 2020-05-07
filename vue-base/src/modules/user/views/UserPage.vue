@@ -8,6 +8,6 @@
 <script>
 import '../styles/user.scss';
 export default {
-  
+  name: 'UserPage'
 }
 </script>
