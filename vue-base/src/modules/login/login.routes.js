@@ -1,6 +1,7 @@
 export default [
   {
     path: '/login',
+    props: { provider: '', token: '', userName: '' },
     name: 'login',
     component: () => import('./views/LoginPage.vue'),
     /**

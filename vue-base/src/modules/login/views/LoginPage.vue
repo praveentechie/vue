@@ -1,38 +1,46 @@
 <template>
   <div class="login-form-container">
-    <h2>Login</h2>
-    <b-form class="user-form" @submit="onSubmit" @reset="onReset">
-      <b-form-group
-        id="input-group-1"
-        label="User name:"
-        label-for="input-1"
-      >
-        <!-- description="We'll never share your email with anyone else." -->
-        <b-form-input
-          id="input-1"
-          v-model="loginForm.userName"
-          required
-          placeholder="Enter user name"
-        ></b-form-input>
-      </b-form-group>
-      <b-form-group id="input-group-2" label="Password:" label-for="input-2">
-        <b-form-input
-          id="input-2"
-          type="password"
-          v-model="loginForm.password"
-          required
-          placeholder="Enter password"
-        ></b-form-input>
-      </b-form-group>
-      <div class="float-right">
-        <b-button type="reset" variant="danger">Reset</b-button>
-        <b-button type="submit" variant="primary">Login</b-button>
-      </div>
-    </b-form>
+    <div class="form-wrapper">
+      <h2>Login</h2>
+      <b-form class="user-form" @submit="onSubmit" @reset="onReset">
+        <b-form-group
+          id="input-group-1"
+          label="User name:"
+          label-for="input-1"
+        >
+          <!-- description="We'll never share your email with anyone else." -->
+          <b-form-input
+            id="input-1"
+            v-model="loginForm.userName"
+            required
+            placeholder="Enter user name"
+          ></b-form-input>
+        </b-form-group>
+        <b-form-group id="input-group-2" label="Password:" label-for="input-2">
+          <b-form-input
+            id="input-2"
+            type="password"
+            v-model="loginForm.password"
+            required
+            placeholder="Enter password"
+          ></b-form-input>
+        </b-form-group>
+        <div class="float-right">
+          <b-button type="reset" variant="danger">Reset</b-button>
+          <b-button type="submit" variant="primary">Login</b-button>
+        </div>
+      </b-form>
+    </div>
+    <div class="social-login">
+      <b-button @click="loginWithFacebook" variant="primary">
+        Login with facebook
+      </b-button>
+    </div>
   </div>
 </template>
 
 <script>
+import { get }            from 'lodash';
 import AuthService        from '../../services/auth.service';
 import { getValueByKey }  from '../../_core/utils/cookie-utils';
 import { coreActions }    from '../../_core/store/core.actions';
@@ -43,6 +51,20 @@ const { mapActions } = createNamespacedHelpers('core');
 
 export default {
   name: 'LoginPage',
+  async created() {
+    let provider = this.$route.query.provider,
+      token = this.$route.query.token,
+      userName = this.$route.query.userName;
+
+    if (provider && token && userName) {
+      let res = await AuthService.validateProviderLogin(provider, token, userName);
+      await this.setUserContext({
+        ...res.userContext,
+        expirationTime: getValueByKey('expirationTime')
+      });
+      this.$router.push({name: 'home'})
+    }
+  },
   data: () => ({
     loginForm: {
       userName: null,
@@ -67,8 +89,21 @@ export default {
     onReset() {
       this.loginForm = {};
     },
+    async loginWithFacebook() {
+      /* window.FB.login(function(response) {
+          if (response.authResponse) {
+          console.log('Welcome!  Fetching your information.... ');
+          FB.api('/me', function(response) {
+            console.log('Good to see you, ' + response.name + '.');
+          });
+          } else {
+          console.log('User cancelled login or did not fully authorize.');
+          }
+      }); */
+      window.open('http://localhost:4040/v1/auth/facebook', '_self');
+    },
     ...mapActions({
-      setUserContext: coreActions.UPDATE_USER_INFO
+      setUserContext: coreActions.UPDATE_USER_INFO,
     })
   }
 }
