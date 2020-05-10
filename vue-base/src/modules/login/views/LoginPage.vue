@@ -32,8 +32,14 @@
       </b-form>
     </div>
     <div class="social-login">
-      <b-button @click="loginWithFacebook" variant="primary">
-        Login with facebook
+      <b-button @click="loginWithSocialAccount('facebook')" variant="outline-primary" class="social-media-login">
+        <c-icon class="fa-facebook-official"/>&nbsp;Login with facebook
+      </b-button>
+      <b-button @click="loginWithSocialAccount('google')" variant="outline-primary" class="social-media-login">
+        <c-icon class="fa-google"/>&nbsp;Login with google
+      </b-button>
+      <b-button @click="loginWithSocialAccount('twitter')" variant="outline-primary" class="social-media-login">
+        <c-icon class="fa-twitter"/>&nbsp;Login with twitter
       </b-button>
     </div>
   </div>
@@ -101,6 +107,13 @@ export default {
           }
       }); */
       window.open('http://localhost:4040/v1/auth/facebook', '_self');
+    },
+    loginWithSocialAccount(provider) {
+      if (provider === 'twitter') {
+        alert('Yet to be implemented');
+      } else {
+        window.open(`http://localhost:4040/v1/auth/${provider}`, '_self');
+      }
     },
     ...mapActions({
       setUserContext: coreActions.UPDATE_USER_INFO,
