@@ -17,7 +17,7 @@ if (process.env.NODE_ENV === 'development') {
     setStorageValue(devKeys.MUTATION_LOGS, flag);
   };  
 }
-
+//window.fbAsyncInit();
 const router = routerInstall(Vue);
 const store = storeInstall(Vue);
 

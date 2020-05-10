@@ -15,7 +15,16 @@ async function logoutUser() {
   });
 }
 
+async function validateProviderLogin(provider, token, userName) {
+  return await restClient({
+    method: 'POST',
+    requestUrl: '/v1/auth/social-login/validate',
+    body: {provider, token, userName}
+  });
+}
+
 export default {
   loginUser,
-  logoutUser
+  logoutUser,
+  validateProviderLogin
 };
