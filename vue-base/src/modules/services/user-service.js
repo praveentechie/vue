@@ -1,4 +1,6 @@
-import restClient     from "../_core/utils/rest-client";
+import { initRestClient } from '@praveentechie/ui-core';
+
+const restClient = initRestClient('http', 'localhost');
 
 const saveUser = async(userInfo) => {
   console.log('userInfo--service', userInfo);

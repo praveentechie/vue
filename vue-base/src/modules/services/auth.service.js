@@ -1,4 +1,6 @@
-import restClient from "../_core/utils/rest-client";
+import { initRestClient } from '@praveentechie/ui-core';
+
+const restClient = initRestClient('http', 'localhost');
 
 async function loginUser(payload) {
   return await restClient({

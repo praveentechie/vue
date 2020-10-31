@@ -23,7 +23,8 @@ export const install = (Vue) => {
     try {
       console.log('route global before guard');
       if (to.name !== 'login' && isEmpty(userContext)) {
-        next({ name: 'login' });
+        // disable when not using server
+        next(/* { name: 'login' } */);
       } else if (to.name === 'login' && !isEmpty(userContext)) {
         console.log('got to gome');
         next({ name: 'home' });
